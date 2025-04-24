@@ -20,9 +20,12 @@ public class Interview {
     public static void main(String[] args) {
         var gilbertTuna = new InterviewForm();
         gilbertTuna.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        gilbertTuna.setSize(275,180);
+        gilbertTuna.setSize(500,500);
         gilbertTuna.setVisible(true);
-                
+    
+        
+        
+             
     }
 
 //    public static void main(String[] args) {
