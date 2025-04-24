@@ -18,7 +18,7 @@ import javax.swing.JLabel;
 public class Interview {
     
     public static void main(String[] args) {
-        Mole gilbertTuna = new Mole();
+        var gilbertTuna = new InterviewForm();
         gilbertTuna.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         gilbertTuna.setSize(275,180);
         gilbertTuna.setVisible(true);
