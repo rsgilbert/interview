@@ -145,14 +145,14 @@ public class PatientListUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-      int selectedRowIdx = patientTable.getSelectedRow();
-      System.out.println("Selected row idx is " + selectedRowIdx);
-        var card =  new PatientCardUI();
-      card.setDefaultCloseOperation(HIDE_ON_CLOSE);
-      card.setVisible(true);
-      
+        int selectedRowIdx = patientTable.getSelectedRow();
+        var card = new PatientCardUI();
+        card.setDefaultCloseOperation(HIDE_ON_CLOSE);
+        card.setVisible(true);
+        int patientId = (int) patientTable.getModel().getValueAt(selectedRowIdx, 0);
+        card.setPatientId(patientId);
 // CardLayout card = (CardLayout)  mainPanel.getLayout();
-       // card.show(mainPanel, "detailPanel");
+        // card.show(mainPanel, "detailPanel");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
