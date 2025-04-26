@@ -18,6 +18,7 @@ public class PatientListUI extends javax.swing.JFrame {
      */
     public PatientListUI() {
         initComponents();
+        patientTable.setModel(new PatientTableModel());
     }
 
     /**
@@ -36,12 +37,10 @@ public class PatientListUI extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         patientTableScrollPane = new javax.swing.JScrollPane();
         patientTable = new javax.swing.JTable();
-        detail = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        mainPanel.setLayout(new java.awt.CardLayout());
+        mainPanel.setLayout(new java.awt.GridLayout(12, 12));
 
         jButton1.setText("View");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -120,31 +119,10 @@ public class PatientListUI extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 164, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        mainPanel.add(list, "listPanel");
-
-        jLabel2.setText("Detail Panel");
-
-        javax.swing.GroupLayout detailLayout = new javax.swing.GroupLayout(detail);
-        detail.setLayout(detailLayout);
-        detailLayout.setHorizontalGroup(
-            detailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(detailLayout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jLabel2)
-                .addContainerGap(304, Short.MAX_VALUE))
-        );
-        detailLayout.setVerticalGroup(
-            detailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(detailLayout.createSequentialGroup()
-                .addGap(110, 110, 110)
-                .addComponent(jLabel2)
-                .addContainerGap(270, Short.MAX_VALUE))
-        );
-
-        mainPanel.add(detail, "detailPanel");
+        mainPanel.add(list);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -167,8 +145,14 @@ public class PatientListUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        CardLayout card = (CardLayout)  mainPanel.getLayout();
-        card.show(mainPanel, "detailPanel");
+      int selectedRowIdx = patientTable.getSelectedRow();
+      System.out.println("Selected row idx is " + selectedRowIdx);
+        var card =  new PatientCardUI();
+      card.setDefaultCloseOperation(HIDE_ON_CLOSE);
+      card.setVisible(true);
+      
+// CardLayout card = (CardLayout)  mainPanel.getLayout();
+       // card.show(mainPanel, "detailPanel");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -207,9 +191,7 @@ public class PatientListUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel detail;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel list;
