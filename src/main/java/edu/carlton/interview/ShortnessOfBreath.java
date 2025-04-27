@@ -14,12 +14,12 @@ import java.util.Date;
 public class ShortnessOfBreath {
      private int id;
     private int patientId;
-    private Date interviewDate;
-    private Time interviewTime;
-    private boolean hasShortnessOfBreath;
-    private String severityLevel;
-    private boolean moreShortThanYesterday;
-    private boolean deleted;
+    private Date interviewDate = new Date(0);
+    private Time interviewTime = new Time(0,0,0);
+    private boolean hasShortnessOfBreath = false;
+    private String severityLevel = "";
+    private boolean moreShortThanYesterday = false;
+    private boolean deleted = false;
 
     public int getId() {
         return id;
@@ -38,6 +38,9 @@ public class ShortnessOfBreath {
     }
 
     public Date getInterviewDate() {
+        if(interviewDate == null) {
+            return new Date();
+        }
         return interviewDate;
     }
 
@@ -46,10 +49,16 @@ public class ShortnessOfBreath {
     }
 
     public Time getInterviewTime() {
+        if(interviewTime == null) {
+            return new Time(0,0,0);
+        }
         return interviewTime;
     }
 
     public void setInterviewTime(Time interviewTime) {
+        if(interviewTime == null) {
+            interviewTime = new Time(0,0,0);
+        }
         this.interviewTime = interviewTime;
     }
 
