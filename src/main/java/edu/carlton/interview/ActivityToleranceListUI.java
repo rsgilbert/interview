@@ -22,7 +22,7 @@ public class ActivityToleranceListUI extends javax.swing.JFrame {
     }
 
     private void loadInformation() {
-        shortnessOfBreathTable.setModel(new ShortnessOfBreathTableModel());
+        activityToleranceTable.setModel(new ActivityToleranceTableModel());
     }
 
     /**
@@ -42,7 +42,7 @@ public class ActivityToleranceListUI extends javax.swing.JFrame {
         newButton = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         patientTableScrollPane = new javax.swing.JScrollPane();
-        shortnessOfBreathTable = new javax.swing.JTable();
+        activityToleranceTable = new javax.swing.JTable();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
@@ -97,7 +97,7 @@ public class ActivityToleranceListUI extends javax.swing.JFrame {
                     .addComponent(newButton)))
         );
 
-        shortnessOfBreathTable.setModel(new javax.swing.table.DefaultTableModel(
+        activityToleranceTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 { new Integer(1), null, "Lugembe", "Kampala"},
                 { new Integer(2), null, "Musa", "Nalya"},
@@ -123,8 +123,8 @@ public class ActivityToleranceListUI extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        shortnessOfBreathTable.setFocusable(false);
-        patientTableScrollPane.setViewportView(shortnessOfBreathTable);
+        activityToleranceTable.setFocusable(false);
+        patientTableScrollPane.setViewportView(activityToleranceTable);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -199,11 +199,14 @@ public class ActivityToleranceListUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        int selectedRowIdx = shortnessOfBreathTable.getSelectedRow();
-        var card = new ShortnessOfBreathCardUI();
+        int selectedRowIdx = activityToleranceTable.getSelectedRow();
+        if (selectedRowIdx < 0) {
+            return;
+        }
+        var card = new ActivityToleranceCardUI();
         card.setDefaultCloseOperation(HIDE_ON_CLOSE);
         card.setVisible(true);
-        int id = (int) shortnessOfBreathTable.getModel().getValueAt(selectedRowIdx, 0);
+        int id = (int) activityToleranceTable.getModel().getValueAt(selectedRowIdx, 0);
         card.setShortnessId(id);
 // CardLayout card = (CardLayout)  mainPanel.getLayout();
         // card.show(mainPanel, "detailPanel");
@@ -214,8 +217,8 @@ public class ActivityToleranceListUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void newButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newButtonActionPerformed
-        var shortness = ShortnessOfBreathManager.insert();
-        var card = new ShortnessOfBreathCardUI();
+        var shortness = ActivityToleranceManager.insert();
+        var card = new ActivityToleranceCardUI();
         card.setDefaultCloseOperation(HIDE_ON_CLOSE);
         card.setVisible(true);
         card.setShortnessId(shortness.getId());
@@ -226,7 +229,7 @@ public class ActivityToleranceListUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenu5ActionPerformed
 
     private void jMenu5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu5MouseClicked
-          var shortnessListUI = new ShortnessOfBreathListUI();
+        var shortnessListUI = new ShortnessOfBreathListUI();
         shortnessListUI.setDefaultCloseOperation(HIDE_ON_CLOSE);
         shortnessListUI.setVisible(true);
     }//GEN-LAST:event_jMenu5MouseClicked
@@ -270,6 +273,7 @@ public class ActivityToleranceListUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable activityToleranceTable;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JMenu jMenu3;
@@ -282,6 +286,5 @@ public class ActivityToleranceListUI extends javax.swing.JFrame {
     private javax.swing.JPanel mainPanel;
     private javax.swing.JButton newButton;
     private javax.swing.JScrollPane patientTableScrollPane;
-    private javax.swing.JTable shortnessOfBreathTable;
     // End of variables declaration//GEN-END:variables
 }
